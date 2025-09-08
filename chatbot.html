@@ -10,12 +10,12 @@
 
   <script src="https://unpkg.com/supersimpledev/react.js"></script>
   <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-  <script src = "https://unpkg.com/supersimpledev/chatbot.js"></script>
+  <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
 
   <script src="https://unpkg.com/supersimpledev/babel.js"></script>
   <script type="text/babel">
 
-    function ChatInput({chatMessages, setChatMessages}) {
+    function ChatInput({ chatMessages, setChatMessages }) {
       let [inputText, setInputText] = React.useState('');
 
       function saveInputText(event) {
@@ -47,7 +47,10 @@
       }
       return (
         <>
-          <input placeholder="Send a message to Chatbot" size="30" onChange={saveInputText} value = {inputText}/>
+          <input placeholder="Send a message to Chatbot" size="30" onChange={saveInputText} value={inputText}
+            onKeyDown={(event) => {
+              event.key == 'Enter' && sendMessage();
+            }} />
           <button onClick={sendMessage}>Send</button>
         </>
       );
@@ -67,7 +70,7 @@
       );
     }
 
-    function ChatMessages({chatMessages}) {
+    function ChatMessages({ chatMessages }) {
 
       return (
         <>
@@ -109,12 +112,12 @@
       // const setChatMessages = array[1];
       return (
         <>
-          <ChatInput 
-            chatMessages = {chatMessages}
-            setChatMessages = {setChatMessages}
+          <ChatInput
+            chatMessages={chatMessages}
+            setChatMessages={setChatMessages}
           />
-          <ChatMessages 
-            chatMessages = {chatMessages}
+          <ChatMessages
+            chatMessages={chatMessages}
           />
         </>
       )
